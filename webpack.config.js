@@ -6,7 +6,6 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     entry: {
         app: ["./client/js/app.js"],
-        admin: ["./client/js/admin/index.js"]
     },
     output: {
         path: __dirname + '/public/static/dist/',
@@ -23,7 +22,7 @@ module.exports = {
             { test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader",'raw!autoprefixer?{browsers:["safari >= 7", "Firefox 15", "ie >= 8", "chrome >= 34"]}!sass') },
             // { test: /\.css$/, loader: 'style!raw' },
             { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "raw-loader") },
-            // { test: /\.(png|gif|jpg)$/, loader: 'file?name=img/[name].[ext]&path=../../img/[name].[ext]' },
+           // { test: /\.(png|gif|jpg)$/, loader: 'file?name=img/[name].[ext]&path=../../img/[name].[ext]' },
             { test: /\.png$/, loader: 'file?name=i/[hash].[ext]' },
             { test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: 'babel'}
         ]
