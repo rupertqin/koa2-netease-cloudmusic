@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %> -- Suntchi</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/static/semantic/dist/semantic.min.css">
+    <script src="/static/jquery-2.2.3.min.js"></script>
+    <script src="/static/semantic/dist/semantic.min.js"></script>
+    <link rel='stylesheet' href='/static/dist/app.css' />
+    <link rel='stylesheet' href='/static/stylesheets/style.css' />
+    
+    
+</head>
+<% var pageFlag = typeof flag === 'undefined' ? '' : flag + '-page' %>
+<body class=<%= pageFlag %> id=<%= pageFlag %>>
+<%= this.title %>
+<div class="ui top inverted vertical menu overlay sidebar">
+    <% for (nav of navs) {%>
+        <a class="item" href=<%= U.F.toFullUrl(nav.url) %>><%= nav.name %></a>
+    <% } %>
+</div>
+<div class="ui top menu horizon">
+    <a class="item logo">
+        <img src="/static/img/logo.png">
+    </a>
+    <% for (nav of navs) {%>
+        <a class="item" href=<%= U.F.toFullUrl(nav.url) %>><%= nav.name %></a>
+    <% } %>
+    <div class="right menu">
+        <a class="ui item toggle">
+            <i class="sidebar icon"></i>
+        </a>
+    </div>
+</div>
+
+
+
+<div class="pusher">
+    <div class="full height">
+  
+  

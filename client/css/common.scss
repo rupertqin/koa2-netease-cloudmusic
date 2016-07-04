@@ -1,0 +1,130 @@
+@import 'include/head';
+
+@media only screen and (min-width: 990px) {
+	@import 'include/destop';
+}
+@media only screen and (max-width: 990px) {
+	@import 'include/mobile';
+}
+
+
+
+$pass: green !default;
+$fail: red;
+$width: 800px;
+$number: 5;
+$headerHeight: 54px;
+
+@mixin fullpageHasMenu {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	padding-top: $headerHeight; 
+}
+
+.ui.menu {
+	position: relative;
+	z-index: 998;
+	margin: 0;
+	border-radius: 0;
+}
+.logo {
+}
+.ui.top.sidebar {
+	position: absolute;
+	top: $headerHeight!important;
+	z-index: 998;
+}
+
+.pushable>.pusher {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	padding-top: $headerHeight; 
+	.grid {
+		// height: 100%; 
+	}
+}
+
+.slick-slide {
+	a {
+		background: url() no-repeat center center/cover;
+		height: 100%;
+		display: block;
+	}
+}
+
+.index-page, .about-page {
+	> .pusher {
+		@include fullpageHasMenu;
+		> .full {
+			height: 100%;
+			overflow-y: auto;
+			> .slick-slider {
+				height: 100%;
+				padding: 0;
+				> .slick-list {
+					height: 100%;
+					> .slick-track {
+						height: 100%;
+					}
+				}
+				&.slick-dotted {
+				}
+				.slick-dots {
+					bottom: 30%;
+				}
+			}
+		}
+	}
+	
+	section {
+		margin-bottom: 2em;
+		padding: 1em 0;
+		&.user {
+			.column {
+				overflow: hidden;
+				.ui.image {
+					width: 8vw;
+					height: 8vw;
+					max-width: 6em;
+					max-height: 6em;
+					min-width: 2em;
+					min-height: 2em;
+					margin: 0;
+					display: inline-block;
+				}
+			}
+		}
+		&.services {
+			background: #eee;
+			.column {
+				overflow: hidden;
+				.ui.image {
+					width: 12vw;
+					height: 12vw;
+					max-width: 10em;
+					max-height: 10em;
+					min-width: 4em;
+					min-height: 4em;
+					display: inline-block;
+				}
+			}
+		}
+	}
+}
+
+.container {
+	// max-width: 1400px;
+	// margin: 0 auto;
+}
+
+
+
+html.ios {
+	overflow-x: visible!important;
+}
