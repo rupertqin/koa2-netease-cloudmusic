@@ -1,7 +1,7 @@
 {
-  "name": "suntchi",
+  "name": "music",
   "version": "0.1.1",
-  "author": "Qin",
+  "author": "Qin Xiang",
   "scripts": {
     "start": "node bin/development.js",
     "production": "node bin/production.js",
