@@ -11,7 +11,7 @@ import koaOnError from 'koa-onerror'
 import config from './config'
 import router from './routes'
 import Util from './util'
-import './models'
+// import './models'
 import Session from './libs/session'
 
 Util.F = Util.filters
