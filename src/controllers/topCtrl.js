@@ -1,8 +1,8 @@
 export default {
     index: async function(ctx, next) {
-        const title = '首页'
+        const title = 'Search page'
         await ctx.render('index', {
-            title, flag: 'index',
+            title, flag: 'search',
             navs: []
         })
     }

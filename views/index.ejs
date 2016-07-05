@@ -1,59 +1,47 @@
 <%- include head %>
-<section class="slider">
-	<div> <a href="" style="background-image: url(/static/img/slide_1.jpg)"></a> </div>
-	<div> <a href="" style="background-image: url(/static/img/slide_2.jpg)"></a> </div>
-	<div> <a href="" style="background-image: url(/static/img/slide_3.jpg)"></a> </div>
-</section>
-
-<section class="user">
-	<div class="hd" id="section-clients">
-		<a href="#" class="toggle hide-pc">客户</a>
-		<i class="plus icon hide-pc"></i>
-		<i class="minus icon hide-pc"></i>
-		<h2 class="ui center aligned header hide-hd">客户</h2>
-	</div>
-	<div class="ui center aligned grid container">
-		<div class="computer only row">
-			<div class="column"></div>
+<section class="">
+	<form class="ui form" action="" @submit.prevent='search' @enter.prevent='search'>
+		<div class="ui search">
+			<div class="ui icon input">
+				<input class="prompt" v-model='key' type="text" placeholder="Search countries...">
+				<i class="search icon"></i>
+			</div>
 		</div>
-		<% for (i of new Array(14)) { %>
-			<div class="three wide tablet two wide computer column">
-				<img class="ui avatar image" src="/static/img/logo.png">
-			</div>
-		<% } %>
-	</div>
-</section>
+	</form>
 
-<section class="services">
-	<div class="hd" id="section-clients">
-		<a href="#" class="toggle hide-pc">服务</a>
-		<i class="plus icon hide-pc"></i>
-		<i class="minus plus icon hide-pc"></i>
-		<h2 class="ui center aligned header hide-hd">服务</h2>
+	<div class="ui top attached tabular menu">
+		<a class="item active" data-tab="first">First</a>
+		<a class="item" data-tab="second">Second</a>
+		<a class="item" data-tab="third">Third</a>
 	</div>
-	<div class="ui center aligned grid container very relaxed">
-		<% for (i of new Array(5)) { %>
-			<div class="five wide tablet three wide computer column">
-				<img class="ui image" src="/static/img/logo.png">
-			</div>
-		<% } %>
+	<div class="ui bottom attached tab segment active" data-tab="first">
+		<table class="ui striped table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Date Joined</th>
+					<th>E-mail</th>
+					<th>Called</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for='song of songs'>
+					<td>{{song.name}}</td>
+					<td>{{song.id}}</td>
+					<td>{{song.artists.picUrl}}</td>
+					<td>{{song.artists.img1v1Url}}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-</section>
+	<div class="ui bottom attached tab segment" data-tab="second">
+		Second
+	</div>
+	<div class="ui bottom attached tab segment" data-tab="third">
+		Third
+	</div>
 
-<section class="user">
-	<div class="hd" id="section-clients">
-		<a href="#" class="toggle hide-pc">伙伴</a>
-		<i class="plus icon hide-pc"></i>
-		<i class="minus plus icon hide-pc"></i>
-		<h2 class="ui center aligned header hide-hd">伙伴</h2>
-	</div>
-	<div class="ui center aligned grid container">
-		<% for (i of new Array(14)) { %>
-			<div class="three wide tablet two wide computer column">
-				<img class="ui avatar image" src="/static/img/logo.png">
-			</div>
-		<% } %>
-	</div>
+
 </section>
 
 <%- include foot %>

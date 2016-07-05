@@ -9,7 +9,10 @@ import logger from 'koa-logger'
 import koaStatic from 'koa-static-plus'
 import koaOnError from 'koa-onerror'
 import config from './config'
+
 import router from './routes'
+import api from './api'
+
 import Util from './util'
 import './models'
 import Session from './libs/session'
@@ -68,6 +71,7 @@ app.use(Session.session)
 
 // response
 app.use(router.routes(), router.allowedMethods())
+app.use(api.routes(), api.allowedMethods())
 
 
 // 404
