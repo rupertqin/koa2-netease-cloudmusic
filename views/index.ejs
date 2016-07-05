@@ -18,18 +18,16 @@
 		<table class="ui striped table">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Date Joined</th>
-					<th>E-mail</th>
-					<th>Called</th>
+					<th>Song</th>
+					<th>Artist</th>
+					<th>Album</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr v-for='song of songs'>
-					<td>{{song.name}}</td>
-					<td>{{song.id}}</td>
-					<td>{{song.artists.picUrl}}</td>
-					<td>{{song.artists.img1v1Url}}</td>
+					<td><a href="/song/{{song.id}}">{{song.name}}</a></td>
+					<td><a href="/artist/{{song.artists[0].id}}">{{song.artists[0].name}}</a></td>
+					<td><a href="/album/{{song.album.id}}">《{{song.album.name}}》</a></td>
 				</tr>
 			</tbody>
 		</table>
