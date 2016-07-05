@@ -8,7 +8,7 @@ export default {
   port: 3400,
   db: {
     host: 'localhost',
-    database: 'suntchi',
+    database: 'music',
     username: 'root',
     password: ''
   },
