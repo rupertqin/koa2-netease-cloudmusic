@@ -15,7 +15,7 @@
 <body class=<%= pageFlag %> id=<%= pageFlag %>>
 
 <% if (typeof sharePic !== 'undefined') {%>
-	<img src=<%= sharePic %> style="display:none" >
+	<img src=<%= sharePic %> style="margin:0;width:0;height:0;overflow:hidden;visibility: hidden;" >
 <% } %>
 	
 <% if (typeof navs !== 'undefined' && navs.length) {%>

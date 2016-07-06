@@ -10,7 +10,7 @@ export default {
 
     search: async function(ctx, next) {
         await ctx.render('search', {
-            title: 'Search page', flag: 'search',
+            title: 'Search Songs', flag: 'search',
             navs: []
         })
     },
