@@ -10,6 +10,7 @@ const app = new Vue({
     },
     methods: {
         search: async function() {
+            if (!this.key) return
             const sd = await superagent.post('/api/search')
                 .send({
                     key: this.key

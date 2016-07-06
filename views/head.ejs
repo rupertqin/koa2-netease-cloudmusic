@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %> -- Suntchi</title>
+    <title><%= title %> -- 太阳之城</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="/static/semantic/dist/semantic.min.css">
     <script src="/static/jquery-2.2.3.min.js"></script>
@@ -13,7 +13,12 @@
 </head>
 <% var pageFlag = typeof flag === 'undefined' ? '' : flag + '-page' %>
 <body class=<%= pageFlag %> id=<%= pageFlag %>>
-<%= this.title %>
+
+<% if (typeof sharePic !== 'undefined') {%>
+	<img src=<%= sharePic %> style="display:none" >
+<% } %>
+	
+<% if (typeof navs !== 'undefined' && navs.length) {%>
 <div class="ui top inverted vertical menu overlay sidebar">
     <% for (nav of navs) {%>
         <a class="item" href=<%= U.F.toFullUrl(nav.url) %>><%= nav.name %></a>
@@ -32,7 +37,7 @@
         </a>
     </div>
 </div>
-
+<% } %>
 
 
 <div class="pusher">
