@@ -19,6 +19,7 @@ if ($('body.play-page').length) {
         }
     });
     ap.init();
+    ap.play();
 
 }
 

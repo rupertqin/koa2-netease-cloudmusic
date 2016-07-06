@@ -52,5 +52,6 @@ src/config/*
 !src/config/index.js
 !src/config/default.js.idea
 bin/tar
+bin/deploy
 nginx.conf
 *.gz
