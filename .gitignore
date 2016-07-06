@@ -51,3 +51,6 @@ public/upload/
 src/config/*
 !src/config/index.js
 !src/config/default.js.idea
+bin/tar
+nginx.conf
+*.gz

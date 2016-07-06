@@ -15,17 +15,17 @@ const neteaseMusic = {
         return getSongInfo(j['songs'][0])
     },
 
-    search: async (ctx)=> {
+    search: async (key)=> {
         const params = {
             type: 1,
             offset: 0,
-            limit: 20,
+            limit: 50,
             sub: false,
-            s: ctx.request.body.key
+            s: key
         }
         const sd = await superagent.post(`http://music.163.com/api/search/get/?${querystring.stringify(params)}`)
             .set('Referer', 'http://music.163.com/')
-        Util.resJson(ctx.response, JSON.parse(sd.res.text))
+        return JSON.parse(sd.res.text)
     }
 }
 

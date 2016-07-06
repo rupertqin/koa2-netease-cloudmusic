@@ -14,7 +14,7 @@ import router from './routes'
 import api from './api'
 
 import Util from './util'
-import './models'
+// import './models'
 import Session from './libs/session'
 
 Util.F = Util.filters

@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 import util from 'util'
 import path from 'path'
 import fs from 'fs'
-import querystring from 'querystring'
 import superagent from 'superagent'
 import asyncBusboy from 'async-busboy'
 import config from '../config'
@@ -28,16 +27,7 @@ router.get('/song/:id', async (ctx, next)=> {
 })
 
 router.post('/search', async (ctx, next)=> {
-    const params = {
-        type: 1,
-        offset: 0,
-        limit: 20,
-        sub: false,
-        s: ctx.request.body.key
-    }
-    const sd = await superagent.post(`http://music.163.com/api/search/get/?${querystring.stringify(params)}`)
-        .set('Referer', 'http://music.163.com/')
-    Util.resJson(ctx.response, JSON.parse(sd.res.text))
+    Util.resJson(ctx.response, await neteaseMusic.search(ctx.request.body.key))
 })
 
 export default router
