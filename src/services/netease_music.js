@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import util from 'util'
-import querystring from 'querystring'
+import qs from 'querystring'
 import superagentDefaults from 'superagent-defaults'
 import superagent from 'superagent'
 import config from '../config'
@@ -28,25 +28,35 @@ const neteaseMusic = {
         return ret
     },
 
+    getPlaylist: async (id)=> {
+        let ret = {}
+        let j = await neteaseRequest.get(`http://music.163.com/api/playlist/detail${id}?id=${id}&csrf_token=`)
+        j = JSON.parse(j.res.text)
+        ret.playlist = j.result.name
+        ret.picUrl = j.result.coverImgUrl
+        ret.songs = j.result.tracks.map(song => getSongInfo(song))
+        return ret
+    },
+
     search: async (key)=> {
         const songParams = { type: 1, offset: 0, limit: 50, sub: false, s: key }
         const albumParams = { type: 10, offset: 0, limit: 50, sub: false, s: key }
-        const panelParams = { type: 1000, offset: 0, limit: 50, sub: false, s: key }
+        const playlistParams = { type: 1000, offset: 0, limit: 50, sub: false, s: key }
         const mvParams = { type: 1004, offset: 0, limit: 50, sub: false, s: key }
         const radioParams = { type: 1009, offset: 0, limit: 50, sub: false, s: key }
 
         const arr = await Promise.all([
-            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(songParams)}`),
-            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(albumParams)}`),
-            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(panelParams)}`),
-            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(mvParams)}`),
-            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(radioParams)}`)
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${qs.stringify(songParams)}`),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${qs.stringify(albumParams)}`),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${qs.stringify(playlistParams)}`),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${qs.stringify(mvParams)}`),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${qs.stringify(radioParams)}`)
         ])
 
         return {
             songs: JSON.parse(arr[0].res.text).result.songs,
             albums: JSON.parse(arr[1].res.text).result.albums,
-            panels: JSON.parse(arr[2].res.text).result.playlists,
+            playlists: JSON.parse(arr[2].res.text).result.playlists,
             mvs: JSON.parse(arr[3].res.text).result.mvs,
             radios: JSON.parse(arr[4].res.text).result.djprograms,
         }

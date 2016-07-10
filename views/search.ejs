@@ -50,13 +50,55 @@
 			</table>
 		</div>
 		<div class="ui bottom attached tab segment" data-tab="third">
-			Third
+			<table v-if='result && result.playlists' class="ui striped table unstackable">
+				<thead>
+					<tr>
+						<th>Song</th>
+						<th>Artist</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for='playlist of result.playlists'>
+                        <td><a href="/play?type=playlist&id={{playlist.id}}">
+                                《{{playlist.name}}》
+                                <img class="ui mini image" :src="playlist.coverImgUrl" alt="">
+                        </a></td>
+						<td><a href="/play?type=song&id={{playlist.creator.userId}}">{{playlist.creator.nickname}}</a></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<div class="ui bottom attached tab segment" data-tab="four">
-			Third
+			<table v-if='result && result.mvs' class="ui striped table unstackable">
+				<thead>
+					<tr>
+						<th>MV</th>
+						<th>Artist</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for='mv of result.mvs'>
+						<td><a href="/play?type=mv&id={{mv.id}}">《{{mv.name}}》</a></td>
+						<td><a href="/play?type=song&id={{mv.artistId}}">{{mv.artistName}}</a></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<div class="ui bottom attached tab segment" data-tab="five">
-			Third
+			<table v-if='result && result.radios' class="ui striped table unstackable">
+				<thead>
+					<tr>
+						<th>Radio</th>
+						<th>Artist</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for='radio of result.radios'>
+						<td><a href="/play?type=radio&id={{radio.id}}">《{{radio.name}}》</a></td>
+						<td><a href="/play?type=song&id={{radio.dj.userId}}">{{radio.dj.nickname}}</a></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 	</div>
