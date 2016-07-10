@@ -18,12 +18,13 @@ export default {
     play: async function(ctx, next) {
         const query = ctx.request.query
         let musicInfo
+        let title
         if (query.type === 'song') {
             musicInfo = await neteaseMusic.getSong(query.id)
             title = `${musicInfo.title} - ${musicInfo.artist}`
         } else if (query.type === 'album') {
             musicInfo = await neteaseMusic.getAlbum(query.id)
-            title = `${musicInfo.title} - ${musicInfo.artist}`
+            title = `${musicInfo.albumName} - ${musicInfo.artist}`
         }
         await ctx.render('play', {
             title,

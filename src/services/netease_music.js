@@ -18,9 +18,14 @@ const neteaseMusic = {
     },
 
     getAlbum: async (id)=> {
-        let j = await neteaseRequest.get(`http://music.163.com/api/song/detail/?id=${id}&ids=[${id}]&csrf_token=`)
+        let ret = {}
+        let j = await neteaseRequest.get(`http://music.163.com/api/album/${id}?id=${id}&csrf_token=`)
         j = JSON.parse(j.res.text)
-        return getSongInfo(j['songs'][0])
+        ret.artist = j.album.artists[0].name
+        ret.albumName = j.album.name
+        ret.picUrl = j.album.picUrl
+        ret.songs = j.album.songs.map(song => getSongInfo(song))
+        return ret
     },
 
     search: async (key)=> {
