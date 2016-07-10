@@ -6,7 +6,7 @@ const app = new Vue({
     el: 'body',
     data: {
         key: '',
-        songs: []
+        result: undefined
     },
     methods: {
         search: async function() {
@@ -16,7 +16,7 @@ const app = new Vue({
                     key: this.key
                 })
             console.log(sd)
-            this.songs = sd.body.songs
+            this.result = sd.body
         }
     }
 })
