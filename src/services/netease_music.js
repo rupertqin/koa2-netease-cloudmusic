@@ -5,23 +5,20 @@ import superagentDefaults from 'superagent-defaults'
 import superagent from 'superagent'
 import config from '../config'
 
+// default Heade
 var neteaseRequest = superagentDefaults()
 neteaseRequest.set('Referer', 'http://music.163.com/')
 
 
 const neteaseMusic = {
     getSong: async (id)=> {
-        let j = await neteaseRequest.get(`http://music.163.com/api/song/detail/?id=${id}
-            &ids=[${id}]&csrf_token=`)
-            .set('Referer', 'http://music.163.com/')
+        let j = await neteaseRequest.get(`http://music.163.com/api/song/detail/?id=${id}&ids=[${id}]&csrf_token=`)
         j = JSON.parse(j.res.text)
         return getSongInfo(j['songs'][0])
     },
 
     getAlbum: async (id)=> {
-        let j = await neteaseRequest.get(`http://music.163.com/api/song/detail/?id=${id}
-            &ids=[${id}]&csrf_token=`)
-            .set('Referer', 'http://music.163.com/')
+        let j = await neteaseRequest.get(`http://music.163.com/api/song/detail/?id=${id}&ids=[${id}]&csrf_token=`)
         j = JSON.parse(j.res.text)
         return getSongInfo(j['songs'][0])
     },
@@ -33,19 +30,12 @@ const neteaseMusic = {
         const mvParams = { type: 1004, offset: 0, limit: 50, sub: false, s: key }
         const radioParams = { type: 1009, offset: 0, limit: 50, sub: false, s: key }
 
-        //const neteaseRequest = neteaseRequest.set('Referer', 'http://music.163.com/'),
-
         const arr = await Promise.all([
-            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(songParams)}`)
-                .set('Referer', 'http://music.163.com/'),
-            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(albumParams)}`)
-                .set('Referer', 'http://music.163.com/'),
-            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(panelParams)}`)
-                .set('Referer', 'http://music.163.com/'),
-            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(mvParams)}`)
-                .set('Referer', 'http://music.163.com/'),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(songParams)}`),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(albumParams)}`),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(panelParams)}`),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(mvParams)}`),
             neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(radioParams)}`)
-                .set('Referer', 'http://music.163.com/')
         ])
 
         return {
