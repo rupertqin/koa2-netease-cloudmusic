@@ -20,9 +20,13 @@ export default {
         let musicInfo
         if (query.type === 'song') {
             musicInfo = await neteaseMusic.getSong(query.id)
+            title = `${musicInfo.title} - ${musicInfo.artist}`
+        } else if (query.type === 'album') {
+            musicInfo = await neteaseMusic.getAlbum(query.id)
+            title = `${musicInfo.title} - ${musicInfo.artist}`
         }
         await ctx.render('play', {
-            title: `${musicInfo.title} - ${musicInfo.artist}`,
+            title,
             flag: 'play',
             type: query.type,
             musicInfo: musicInfo,

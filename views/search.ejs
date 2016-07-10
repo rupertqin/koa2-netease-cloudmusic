@@ -28,7 +28,7 @@
 				<tbody>
 					<tr v-for='song of songs'>
 						<td><a href="/play?type=song&id={{song.id}}">{{song.name}} - {{song.artists[0].name}}</a></td>
-						<td><!--<a href="/album/{{song.album.id}}">《{{song.album.name}}》</a>--></td>
+						<td><a href="/play?type=album&id={{song.album.id}}">《{{song.album.name}}》</a></td>
 					</tr>
 				</tbody>
 			</table>

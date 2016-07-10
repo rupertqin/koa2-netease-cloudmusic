@@ -1,14 +1,25 @@
 import mongoose from 'mongoose'
 import util from 'util'
 import querystring from 'querystring'
+import superagentDefaults from 'superagent-defaults'
 import superagent from 'superagent'
 import config from '../config'
 
+var neteaseRequest = superagentDefaults()
+neteaseRequest.set('Referer', 'http://music.163.com/')
 
 
 const neteaseMusic = {
     getSong: async (id)=> {
-        let j = await superagent.get(`http://music.163.com/api/song/detail/?id=${id}
+        let j = await neteaseRequest.get(`http://music.163.com/api/song/detail/?id=${id}
+            &ids=[${id}]&csrf_token=`)
+            .set('Referer', 'http://music.163.com/')
+        j = JSON.parse(j.res.text)
+        return getSongInfo(j['songs'][0])
+    },
+
+    getAlbum: async (id)=> {
+        let j = await neteaseRequest.get(`http://music.163.com/api/song/detail/?id=${id}
             &ids=[${id}]&csrf_token=`)
             .set('Referer', 'http://music.163.com/')
         j = JSON.parse(j.res.text)
@@ -16,16 +27,34 @@ const neteaseMusic = {
     },
 
     search: async (key)=> {
-        const params = {
-            type: 1,
-            offset: 0,
-            limit: 50,
-            sub: false,
-            s: key
+        const songParams = { type: 1, offset: 0, limit: 50, sub: false, s: key }
+        const albumParams = { type: 10, offset: 0, limit: 50, sub: false, s: key }
+        const panelParams = { type: 1000, offset: 0, limit: 50, sub: false, s: key }
+        const mvParams = { type: 1004, offset: 0, limit: 50, sub: false, s: key }
+        const radioParams = { type: 1009, offset: 0, limit: 50, sub: false, s: key }
+
+        //const neteaseRequest = neteaseRequest.set('Referer', 'http://music.163.com/'),
+
+        const arr = await Promise.all([
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(songParams)}`)
+                .set('Referer', 'http://music.163.com/'),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(albumParams)}`)
+                .set('Referer', 'http://music.163.com/'),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(panelParams)}`)
+                .set('Referer', 'http://music.163.com/'),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(mvParams)}`)
+                .set('Referer', 'http://music.163.com/'),
+            neteaseRequest.post(`http://music.163.com/api/search/get/?${querystring.stringify(radioParams)}`)
+                .set('Referer', 'http://music.163.com/')
+        ])
+
+        return {
+            songs: JSON.parse(arr[0].res.text).result.songs,
+            albums: JSON.parse(arr[1].res.text).result.albums,
+            panels: JSON.parse(arr[2].res.text).result.playlists,
+            mvs: JSON.parse(arr[3].res.text).result.mvs,
+            radios: JSON.parse(arr[4].res.text).result.djprograms,
         }
-        const sd = await superagent.post(`http://music.163.com/api/search/get/?${querystring.stringify(params)}`)
-            .set('Referer', 'http://music.163.com/')
-        return JSON.parse(sd.res.text)
     }
 }
 

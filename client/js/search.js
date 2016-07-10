@@ -16,7 +16,7 @@ const app = new Vue({
                     key: this.key
                 })
             console.log(sd)
-            this.songs = sd.body.result.songs
+            this.songs = sd.body.songs
         }
     }
 })

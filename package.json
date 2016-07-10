@@ -31,7 +31,8 @@
     "lodash": "^4.11.1",
     "moment": "^2.13.0",
     "mongoose": "^4.4.19",
-    "semantic-ui": "^2.1.8"
+    "semantic-ui": "^2.1.8",
+    "superagent-defaults": "^0.1.14"
   },
   "devDependencies": {
     "aplayer": "^1.4.6",
