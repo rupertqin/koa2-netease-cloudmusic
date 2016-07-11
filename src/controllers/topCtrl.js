@@ -21,9 +21,12 @@ export default {
         let title
         let sharePic
         if (query.type === 'song') {
-            musicInfo = await neteaseMusic.getSong(query.id)
-            title = `${musicInfo.title} - ${musicInfo.artist}`
-            sharePic = musicInfo.pic_url
+            const song = await neteaseMusic.getSong(query.id)
+            title = `${song.title} - ${song.artist}`
+            sharePic = song.pic_url
+            musicInfo = {
+                songs: [song]
+            }
         } else if (query.type === 'album') {
             musicInfo = await neteaseMusic.getAlbum(query.id)
             title = `${musicInfo.albumName} - ${musicInfo.artist}`

@@ -42,7 +42,6 @@ const neteaseMusic = {
         let ret = {}
         let j = await neteaseRequest.get(`http://music.163.com/api/dj/program/byradio/?radioId=${id}&ids=[${id}]&csrf_token=`)
         j = JSON.parse(j.res.text)
-        console.log('================ ', j)
         ret.songs = j.programs.map(program => getSongInfo(program.mainSong))
         return ret
     },

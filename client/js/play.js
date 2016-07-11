@@ -27,7 +27,7 @@ if ($('body.play-page').length) {
                     title: song.title,
                     author: song.artist,
                     url: song.url_best,
-                    pic: feData.picUrl
+                    pic: feData.picUrl || song.pic_url
                 }   
             })
             break;
