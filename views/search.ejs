@@ -13,8 +13,8 @@
 		<div class="ui top attached tabular menu">
 			<a class="item active" data-tab="first">Song</a>
             <a class="item" data-tab="second">Album</a>
-			<a class="item" data-tab="third">List</a>
-			<a class="item" data-tab="four">MV</a>
+			<a class="item" data-tab="third">Playlist</a>
+            <!--<a class="item" data-tab="four">MV</a>-->
             <a class="item" data-tab="five">Radio</a>
 		</div>
 		<div class="ui bottom attached tab segment active" data-tab="first">
@@ -43,7 +43,10 @@
 				</thead>
 				<tbody>
 					<tr v-for='album of result.albums'>
-						<td><a href="/play?type=album&id={{album.id}}">《{{album.name}}》</a></td>
+                        <td><a href="/play?type=album&id={{album.id}}">
+                                <img class="ui middle aligned mini image" :src="album.picUrl" alt="">
+                                《{{album.name}}》
+                        </a></td>
 						<td><a href="/play?type=song&id={{album.id}}">{{album.artist.name}}</a></td>
 					</tr>
 				</tbody>
@@ -53,15 +56,15 @@
 			<table v-if='result && result.playlists' class="ui striped table unstackable">
 				<thead>
 					<tr>
-						<th>Song</th>
-						<th>Artist</th>
+						<th>Playlist</th>
+						<th>By</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for='playlist of result.playlists'>
                         <td><a href="/play?type=playlist&id={{playlist.id}}">
+                                <img class="ui middle aligned mini image" :src="playlist.coverImgUrl" alt="">
                                 《{{playlist.name}}》
-                                <img class="ui mini image" :src="playlist.coverImgUrl" alt="">
                         </a></td>
 						<td><a href="/play?type=song&id={{playlist.creator.userId}}">{{playlist.creator.nickname}}</a></td>
 					</tr>

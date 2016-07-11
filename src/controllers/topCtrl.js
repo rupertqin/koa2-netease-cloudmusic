@@ -34,7 +34,7 @@ export default {
             sharePic = musicInfo.pic_url
         } else if (query.type === 'radio') {
             musicInfo = await neteaseMusic.getRadio(query.id)
-            title = `${musicInfo.songs[0].album} - ${musicInfo.songs[0].artist}`
+            title = `${musicInfo.songs[0].artist}`
             sharePic = musicInfo.songs[0].pic_url
         }
         
