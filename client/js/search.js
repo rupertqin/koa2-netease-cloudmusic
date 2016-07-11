@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import superagent from 'superagent'
-import APlayer from 'APlayer'
 
 const app = new Vue({
     el: 'body',

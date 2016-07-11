@@ -41,7 +41,9 @@ if ($('body.play-page').length) {
         music: songs
     });
     ap.init();
-    ap.play();
+    if (!/(android)/i.test(navigator.userAgent)) {
+        ap.play();
+    }
 
 }
 
