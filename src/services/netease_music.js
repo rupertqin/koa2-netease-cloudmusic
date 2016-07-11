@@ -30,6 +30,26 @@ const neteaseMusic = {
 
     getPlaylist: async (id)=> {
         let ret = {}
+        let j = await neteaseRequest.get(`http://music.163.com/api/playlist/detail/?id=${id}&csrf_token=`)
+        j = JSON.parse(j.res.text)
+        ret.name = j.result.name
+        ret.picUrl = j.result.coverImgUrl
+        ret.songs = j.result.tracks.map(song => getSongInfo(song))
+        return ret
+    },
+
+    getRadio: async (id)=> {
+        let ret = {}
+        let j = await neteaseRequest.get(`http://music.163.com/api/dj/program/byradio/?radioId=${id}&ids=[${id}]&csrf_token=`)
+        j = JSON.parse(j.res.text)
+        console.log('================ ', j)
+        ret.songs = j.programs.map(program => getSongInfo(program.mainSong))
+        return ret
+    },
+
+
+    getMV: async (id)=> {
+        let ret = {}
         let j = await neteaseRequest.get(`http://music.163.com/api/playlist/detail${id}?id=${id}&csrf_token=`)
         j = JSON.parse(j.res.text)
         ret.playlist = j.result.name
@@ -58,7 +78,7 @@ const neteaseMusic = {
             albums: JSON.parse(arr[1].res.text).result.albums,
             playlists: JSON.parse(arr[2].res.text).result.playlists,
             mvs: JSON.parse(arr[3].res.text).result.mvs,
-            radios: JSON.parse(arr[4].res.text).result.djprograms,
+            radios: JSON.parse(arr[4].res.text).result.djRadios,
         }
     }
 }
@@ -82,7 +102,7 @@ function makeUrl(songNet, dfsId) {
 function getSongInfo(song) {
     let songNet = song.mp3Url.split('/')[2]
     return {
-        url_best: makeUrl(songNet, song.hMusic.dfsId) || song.mp3Url || makeUrl(songNet, song.bMusic.dfsId),
+        url_best: song.hMusic && makeUrl(songNet, song.hMusic.dfsId) || song.mp3Url || song.bMusic && makeUrl(songNet, song.bMusic.dfsId),
         title: song['name'],
         album: song['album']['name'],
         pic_url: song['album']['picUrl'],

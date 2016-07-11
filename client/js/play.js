@@ -10,16 +10,18 @@ if ($('body.play-page').length) {
     const playType = querystring.parse(location.search.slice(1)).type
     let songs = []
     switch (playType) {
-        case 'song':
-            songs = [{
-                title: feData.title,
-                author: feData.artist,
-                url: feData.url_best,
-                pic: feData.pic_url,
-            }]
-
+        case 'radio':
+            songs = feData.songs.map((song) => {
+                return {
+                    title: song.title,
+                    author: song.artist,
+                    url: song.url_best,
+                    pic: feData.picUrl || song.pic_url
+                }   
+            })
+            
             break;
-        case 'album':
+        default :
             songs = feData.songs.map((song) => {
                 return {
                     title: song.title,
