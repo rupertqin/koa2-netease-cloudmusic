@@ -21,7 +21,7 @@ if ($('body.play-page').length) {
                     title: song.title,
                     author: song.artist,
                     url: song.url_best,
-                    pic: feData.picUrl || song.pic_url
+                    pic: (feData.picUrl || song.pic_url) + '?param=132y132'
                 }   
             })
             
@@ -32,7 +32,7 @@ if ($('body.play-page').length) {
                     title: song.title,
                     author: song.artist,
                     url: song.url_best,
-                    pic: feData.picUrl || song.pic_url
+                    pic: (feData.picUrl || song.pic_url) + '?param=132y132'
                 }   
             })
             break;

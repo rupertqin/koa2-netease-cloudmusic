@@ -33,7 +33,7 @@ const neteaseMusic = {
         let j = await neteaseRequest.get(`http://music.163.com/api/playlist/detail/?id=${id}&csrf_token=`)
         j = JSON.parse(j.res.text)
         ret.name = j.result.name
-        ret.picUrl = j.result.coverImgUrl
+        ret.pic_url = j.result.coverImgUrl
         ret.songs = j.result.tracks.map(song => getSongInfo(song))
         return ret
     },
