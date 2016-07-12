@@ -39,6 +39,10 @@ export default {
             musicInfo = await neteaseMusic.getRadio(query.id)
             title = `${musicInfo.songs[0].artist}`
             sharePic = musicInfo.songs[0].pic_url
+        } else if (query.type === 'mv') {
+            musicInfo = await neteaseMusic.getMV(query.id)
+            title = musicInfo.title
+            sharePic = musicInfo.pic_url
         }
         
         await ctx.render('play', {

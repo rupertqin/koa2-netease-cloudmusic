@@ -124,6 +124,9 @@ $headerHeight: 54px;
 	// margin: 0 auto;
 }
 
+[v-if], [v-cloak] {
+    display: none;
+}
 
 
 html.ios {

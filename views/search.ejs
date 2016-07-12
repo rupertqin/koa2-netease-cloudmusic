@@ -3,7 +3,7 @@
 	<form class="ui centered grid form" action="">
 		<div class="ui search six wide tablet eight wide computer aligned column">
 			<div class="ui icon input">
-				<input class="prompt" v-model='key' type="text" @input='search | debounce 300'  placeholder="Search songs">
+				<input class="prompt" v-model='key' type="text" @input='search | debounce 300'  placeholder="搜索音乐">
 				<i class="search icon"></i>
 			</div>
 		</div>
@@ -14,8 +14,8 @@
 			<a class="item active" data-tab="first">歌曲</a>
             <a class="item" data-tab="second">专辑</a>
 			<a class="item" data-tab="third">歌单</a>
-            <!--<a class="item" data-tab="four">MV</a>-->
             <a class="item" data-tab="five">电台</a>
+            <a class="item" data-tab="four">MV</a>
 		</div>
 		<div class="ui bottom attached tab segment active" data-tab="first">
 			<table v-if='result && result.songs' class="ui striped table unstackable">

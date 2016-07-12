@@ -46,15 +46,15 @@ const neteaseMusic = {
         return ret
     },
 
-
     getMV: async (id)=> {
         let ret = {}
-        let j = await neteaseRequest.get(`http://music.163.com/api/playlist/detail${id}?id=${id}&csrf_token=`)
+        let j = await neteaseRequest.get(`http://music.163.com/api/mv/detail?id=${id}&ids=[${id}]&csrf_token=`)
         j = JSON.parse(j.res.text)
-        ret.playlist = j.result.name
-        ret.picUrl = j.result.coverImgUrl
-        ret.songs = j.result.tracks.map(song => getSongInfo(song))
-        return ret
+        return {
+            title: j.data.name + ' - ' + j.data.artistName,
+            url_best: j.data.brs['720'] || j.data.brs['480'] || j.data.brs['1080'] || j.data.brs['240'],
+            pic_url: j.data.cover
+        }
     },
 
     search: async (key)=> {
@@ -106,6 +106,11 @@ function getSongInfo(song) {
         album: song['album']['name'],
         pic_url: song['album']['picUrl'],
         artist: song['artists'][0]['name']
+    }
+}
+
+function getVideoInfo(mv) {
+    return {
     }
 }
 

@@ -18,6 +18,7 @@
     "async-busboy": "^0.1.0",
     "co": "^4.6.0",
     "debug": "^2.2.0",
+    "dplayer": "^1.0.0",
     "ejs": "^2.4.1",
     "koa": "^2.0.0",
     "koa-bodyparser": "^2.0.1",
