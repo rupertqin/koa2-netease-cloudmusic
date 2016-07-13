@@ -11,8 +11,6 @@ class Session {
     }
     
     init(ctx, next) {
-        console.log('====== modernMiddleware ctx: ', ctx.cookies.get('SID'),  Object.keys(ctx.req.headers))
-        console.log('====== modernMiddleware sessions: ', sessions)
         ctx.req.cookies = this.parseCookie(ctx.req.headers.cookie)
         var id = ctx.cookies.get(key)
         if (!id) {

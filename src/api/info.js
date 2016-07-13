@@ -12,7 +12,6 @@ const router = Router()
 
 router.post('/upload', async (ctx, next)=> {
     const formData = await asyncBusboy(ctx.req)
-    console.log('======= formData: ', formData)
     const file = formData.files[0]
     const filename = +new Date() + file.filename
     fs.rename(file.path, config.uploadPath + '/img/' + filename)

@@ -61,7 +61,7 @@ app.use(async (ctx, next) => {
 
 
 function modernMiddleware(ctx, next) {
-  console.log('====== modernMiddleware ctx: ', ctx.cookies.get('SID'),  Object.keys(ctx.req.headers))
+  // console.log('====== modernMiddleware ctx: ', ctx.cookies.get('SID'),  Object.keys(ctx.req.headers))
   return Sess(ctx, next)
   
   
