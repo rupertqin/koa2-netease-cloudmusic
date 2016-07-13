@@ -27,8 +27,8 @@
 				</thead>
 				<tbody>
 					<tr v-for='song of result.songs'>
-						<td><a href="/play?type=song&id={{song.id}}">{{song.name}} - {{song.artists[0].name}}</a></td>
-						<td><a href="/play?type=album&id={{song.album.id}}">《{{song.album.name}}》</a></td>
+						<td><a href="play?type=song&id={{song.id}}">{{song.name}} - {{song.artists[0].name}}</a></td>
+						<td><a href="play?type=album&id={{song.album.id}}">《{{song.album.name}}》</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -43,11 +43,11 @@
 				</thead>
 				<tbody>
 					<tr v-for='album of result.albums'>
-                        <td><a href="/play?type=album&id={{album.id}}">
+                        <td><a href="play?type=album&id={{album.id}}">
                                 <img class="ui middle aligned mini image" :src="album.picUrl + '?param=70y70'" alt="">
                                 《{{album.name}}》
                         </a></td>
-						<td><a href="/play?type=song&id={{album.id}}">{{album.artist.name}}</a></td>
+						<td><a href="play?type=song&id={{album.id}}">{{album.artist.name}}</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -62,11 +62,11 @@
 				</thead>
 				<tbody>
 					<tr v-for='playlist of result.playlists'>
-                        <td><a href="/play?type=playlist&id={{playlist.id}}">
+                        <td><a href="play?type=playlist&id={{playlist.id}}">
                                 <img class="ui middle aligned mini image" :src="playlist.coverImgUrl + '?param=70y70'" alt="">
                                 《{{playlist.name}}》
                         </a></td>
-						<td><a href="/play?type=song&id={{playlist.creator.userId}}">{{playlist.creator.nickname}}</a></td>
+						<td><a href="play?type=song&id={{playlist.creator.userId}}">{{playlist.creator.nickname}}</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -81,8 +81,8 @@
 				</thead>
 				<tbody>
 					<tr v-for='mv of result.mvs'>
-						<td><a href="/play?type=mv&id={{mv.id}}">《{{mv.name}}》</a></td>
-						<td><a href="/play?type=song&id={{mv.artistId}}">{{mv.artistName}}</a></td>
+						<td><a href="play?type=mv&id={{mv.id}}">《{{mv.name}}》</a></td>
+						<td><a href="play?type=song&id={{mv.artistId}}">{{mv.artistName}}</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -97,8 +97,8 @@
 				</thead>
 				<tbody>
 					<tr v-for='radio of result.radios'>
-						<td><a href="/play?type=radio&id={{radio.id}}">《{{radio.name}}》</a></td>
-						<td><a href="/play?type=song&id={{radio.dj.userId}}">{{radio.dj.nickname}}</a></td>
+						<td><a href="play?type=radio&id={{radio.id}}">《{{radio.name}}》</a></td>
+						<td><a href="play?type=song&id={{radio.dj.userId}}">{{radio.dj.nickname}}</a></td>
 					</tr>
 				</tbody>
 			</table>

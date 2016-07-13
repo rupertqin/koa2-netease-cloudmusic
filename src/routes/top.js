@@ -3,8 +3,9 @@ import topCtrl from '../controllers/topCtrl'
 
 const router = Router()
 
-router.get('/', topCtrl.search)
-router.get('/play', topCtrl.play)
+router.get('search', '/', topCtrl.search)
+router.get('search', '/search', topCtrl.search)
+router.get('play', '/play', topCtrl.play)
 
 
 export default router

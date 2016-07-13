@@ -1,7 +1,7 @@
 {
   "name": "music",
   "version": "0.1.1",
-  "author": "Qin Xiang",
+  "author": "Rupert",
   "scripts": {
     "start": "node bin/development.js",
     "production": "node bin/production.js",
@@ -12,6 +12,7 @@
     "test": "mocha -u bdd --compilers js:babel-core/register",
     "dev": "npm start & npm run fe & npm run browserSync",
     "fe": "webpack --watch",
+    "build:fe": "webpack -p",
     "browserSync": "browser-sync start --proxy 'localhost:3400' --no-open --reload-delay 300 --files 'src/' 'public/' 'views/' "
   },
   "dependencies": {
